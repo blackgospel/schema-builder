@@ -1,13 +1,9 @@
-import { JsonBuilder } from 'components/v2/json-builder'
+import { JsonBuilder } from 'components/json-builder'
 import type { NextPage } from 'next'
 import React from 'react'
 
 const Home: NextPage = () => {
-  return (
-    <div>
-      <JsonBuilder />
-    </div>
-  )
+  return <JsonBuilder />
 }
 
 export default Home

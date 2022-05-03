@@ -1,60 +1,11 @@
 import { useState } from 'react'
+import { defaultSchema } from 'src/helper/utils/constants'
 import {
   addSchemaProperty,
   renameSchemaProperty,
   setSchemaProperty,
 } from 'src/helper/utils/schema'
-import { Schema, SchemaTypeOption } from 'src/helper/utils/types'
-
-const defaultSchema = {
-  type: 'object',
-  properties: {},
-}
-
-const JsonSchemaMap = {
-  string: {
-    type: 'string',
-  },
-  number: {
-    type: 'number',
-  },
-  boolean: {
-    type: 'boolean',
-  },
-  object: {
-    type: 'object',
-    properties: {},
-  },
-  array: {
-    type: 'array',
-    items: {
-      type: 'string',
-    },
-  },
-}
-
-export const schemaTypes: SchemaTypeOption[] = [
-  {
-    value: 'string',
-    label: 'String',
-  },
-  {
-    value: 'number',
-    label: 'Number',
-  },
-  {
-    value: 'boolean',
-    label: 'Boolean',
-  },
-  {
-    value: 'object',
-    label: 'Object',
-  },
-  {
-    value: 'array',
-    label: 'Array',
-  },
-]
+import { Schema } from 'src/helper/utils/types'
 
 const useJsonBuilder = () => {
   const [jsonSchema, setJsonSchema] = useState<Schema>(defaultSchema)

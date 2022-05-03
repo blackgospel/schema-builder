@@ -5,6 +5,7 @@ import {
   isSchemaArray,
   isSchemaObject,
   renameSchemaProperty,
+  setSchemaItems,
   setSchemaProperty,
 } from 'src/helper/utils/schema'
 import { Schema } from 'src/helper/utils/types'
@@ -13,7 +14,7 @@ const useSchemaCreator = (
   schema: Schema,
   onChange: (schema: Schema) => void
 ) => {
-  const [isCollapsed, setIsCollapsed] = useState<boolean>(false)
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(true)
 
   const onCollapse =
     isSchemaObject(schema) || isSchemaArray(schema)
@@ -33,11 +34,15 @@ const useSchemaCreator = (
   const onDeleteObjectField = (key: string) =>
     onChange(deleteSchemaProperty(key)(schema))
 
+  const onChangeItems = (newSchema: Schema) =>
+    onChange(setSchemaItems(newSchema, schema))
+
   return {
     isCollapsed,
     onCollapse,
     onChangeObjectTitle,
     onChangeObjectType,
+    onChangeItems,
     onAddField,
     onDeleteObjectField,
   }

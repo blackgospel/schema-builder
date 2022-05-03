@@ -1,9 +1,9 @@
 import clsx from 'clsx'
 import _ from 'lodash/fp'
 import {
+  getSchemaItems,
   isSchemaArray,
   isSchemaObject,
-  setSchemaItems,
 } from 'src/helper/utils/schema'
 import { Schema } from 'src/helper/utils/types'
 import useSchemaCreator from '../../hooks/useSchemaCreator'
@@ -34,6 +34,7 @@ const SchemaCreator: React.FC<SchemaCreatorProps> = ({
     onChangeObjectType,
     onAddField,
     onDeleteObjectField,
+    onChangeItems,
   } = useSchemaCreator(schema, onChange)
 
   return (
@@ -67,10 +68,8 @@ const SchemaCreator: React.FC<SchemaCreatorProps> = ({
           )}
           {isSchemaArray(schema) && (
             <SchemaArray
-              schema={schema}
-              onChange={newSchema =>
-                onChange(setSchemaItems(newSchema, schema))
-              }
+              schema={getSchemaItems(schema)}
+              onChange={onChangeItems}
             />
           )}
         </div>

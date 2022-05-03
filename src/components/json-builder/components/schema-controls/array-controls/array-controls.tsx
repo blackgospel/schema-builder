@@ -1,5 +1,5 @@
 import { Input, Select } from 'antd'
-import useSchemaControls from 'components/v2/json-builder/hooks/useSchemaControls'
+import useSchemaControls from 'components/json-builder/hooks/useSchemaControls'
 import { schemaTypes } from 'src/helper/utils/constants'
 import { Schema } from 'src/helper/utils/types'
 import styles from '../schema-controls.module.sass'

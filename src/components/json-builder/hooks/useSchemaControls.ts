@@ -1,4 +1,4 @@
-import { schemaTypes } from 'components/json-builder/hooks/useJsonBuilder'
+import { schemaTypes } from 'src/helper/utils/constants'
 import {
   findOption,
   getSchemaType,

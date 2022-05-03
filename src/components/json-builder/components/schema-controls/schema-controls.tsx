@@ -6,8 +6,8 @@ import {
   SettingOutlined,
 } from '@ant-design/icons'
 import { Button, Input, Select } from 'antd'
-import { schemaTypes } from 'components/json-builder/hooks/useJsonBuilder'
 import _ from 'lodash'
+import { schemaTypes } from 'src/helper/utils/constants'
 import { Schema } from 'src/helper/utils/types'
 import useSchemaControls from '../../hooks/useSchemaControls'
 import styles from './schema-controls.module.sass'
