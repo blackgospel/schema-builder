@@ -1,5 +1,5 @@
 import _ from 'lodash/fp'
-import { typeToValidFields } from './constants'
+import { typeToOptions, typeToValidFields } from './constants'
 import { Schema, SchemaType } from './types'
 
 export const returnUndefined = _.noop
@@ -82,6 +82,9 @@ export const hasSchemaProperties = (schema: Schema) =>
 
 export const hasSchemaItems = (schema: Schema) =>
   !_.isEmpty(getSchemaItems(schema))
+
+export const getSchemaMenuOptions = (type: SchemaType) =>
+  _.get(type, typeToOptions)
 
 export const setSchemaTypeAndRemoveWrongFields = _.flow([
   setSchemaType,

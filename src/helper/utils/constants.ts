@@ -1,12 +1,18 @@
 import type {
+  ArraySchemaFieldOption,
   ArrayValidSchemaField,
+  BoolSchemaFieldOption,
   BoolValidSchemaField,
+  CommonSchemaFieldOption,
   CommonValidSchemaField,
-  IntegerValidSchemaField,
+  NumberSchemaFieldOption,
   NumberValidSchemaField,
+  ObjectSchemaFieldOption,
   ObjectValidSchemaField,
+  SchemaMenuOption,
   SchemaType,
   SchemaTypeOption,
+  StringSchemaFieldOption,
   StringValidSchemaField,
 } from '../utils/types'
 
@@ -50,21 +56,12 @@ export const stringValidSchemaProperties: StringValidSchemaField[] = [
   'format',
   'maxLength',
   'minLength',
-  'pattern',
 ]
 
 export const numberValidSchemaProperties: NumberValidSchemaField[] = [
   ...commonValidProperties,
   'maximum',
   'minimum',
-  'multipleOf',
-]
-
-export const integerValidSchemaProperties: IntegerValidSchemaField[] = [
-  ...commonValidProperties,
-  'maximum',
-  'minimum',
-  'multipleOf',
 ]
 
 export const boolValidSchemaProperties: BoolValidSchemaField[] = [
@@ -81,15 +78,88 @@ export const arrayValidSchemaProperties: ArrayValidSchemaField[] = [
 
 export const objectValidSchemaProperties: ObjectValidSchemaField[] = [
   ...commonValidProperties,
-  'required',
+  // 'required',
   'properties',
+]
+
+export const formatOptions = [
+  {
+    value: 'date-time',
+    label: 'Date',
+  },
+  {
+    value: 'email',
+    label: 'Email',
+  },
+  {
+    value: 'hostname',
+    label: 'Hostname',
+  },
+  {
+    value: 'ipv4',
+    label: 'IPv4',
+  },
+  {
+    value: 'ipv6',
+    label: 'IPv6',
+  },
+  {
+    value: 'uri',
+    label: 'URI',
+  },
+]
+
+const commonSchemaOptions: CommonSchemaFieldOption[] = [
+  { value: 'description', label: 'Description', type: 'text' },
+]
+
+export const stringSchemaOptions: StringSchemaFieldOption[] = [
+  ...commonSchemaOptions,
+  { value: 'minLength', label: 'Minimum Length', type: 'number' },
+  { value: 'maxLength', label: 'Maximum Length', type: 'number' },
+  { value: 'enum', label: 'Options', type: 'multi_creatable' },
+  {
+    value: 'format',
+    label: 'Format',
+    type: 'select',
+    optionList: formatOptions,
+  },
+]
+
+export const numberSchemaOptions: NumberSchemaFieldOption[] = [
+  ...commonSchemaOptions,
+  { value: 'minimum', label: 'Minimum', type: 'number' },
+  { value: 'maximum', label: 'Maximum', type: 'number' },
+]
+
+export const boolSchemaOptions: BoolSchemaFieldOption[] = [
+  ...commonSchemaOptions,
+]
+
+export const objectSchemaOptions: ObjectSchemaFieldOption[] = [
+  ...commonSchemaOptions,
+  // { value: 'required', label: 'Required', type: 'required' },
+]
+
+export const arraySchemaOptions: ArraySchemaFieldOption[] = [
+  ...commonSchemaOptions,
+  { value: 'minItems', label: 'Minimum Items', type: 'number' },
+  { value: 'maxItems', label: 'Maximum Items', type: 'number' },
+  { value: 'uniqueItems', label: 'Unique Items', type: 'boolean' },
 ]
 
 export const typeToValidFields: Record<SchemaType, string[]> = {
   string: stringValidSchemaProperties,
-  integer: integerValidSchemaProperties,
   number: numberValidSchemaProperties,
   boolean: boolValidSchemaProperties,
   object: objectValidSchemaProperties,
   array: arrayValidSchemaProperties,
+}
+
+export const typeToOptions: Record<SchemaType, SchemaMenuOption[]> = {
+  string: stringSchemaOptions,
+  number: numberSchemaOptions,
+  boolean: boolSchemaOptions,
+  array: arraySchemaOptions,
+  object: objectSchemaOptions,
 }

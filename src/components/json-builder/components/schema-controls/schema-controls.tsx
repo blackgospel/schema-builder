@@ -10,6 +10,7 @@ import _ from 'lodash'
 import { schemaTypes } from 'src/helper/utils/constants'
 import { Schema } from 'src/helper/utils/types'
 import useSchemaControls from '../../hooks/useSchemaControls'
+import { SchemaMenu } from '../schema-menu'
 import styles from './schema-controls.module.sass'
 
 interface SchemaControlsProps {
@@ -31,11 +32,13 @@ const SchemaControls: React.FC<SchemaControlsProps> = ({
   onCollapse,
   onDelete,
 }) => {
-  const { getTypeValue, onChangeTitle, onChangeType } = useSchemaControls(
-    schema,
-    onChange,
-    onChangeKey
-  )
+  const {
+    getTypeValue,
+    onChangeTitle,
+    onChangeType,
+    isModalVisible,
+    setIsModalVisible,
+  } = useSchemaControls(schema, onChange, onChangeKey)
 
   return (
     <div className={styles.container}>
@@ -62,7 +65,10 @@ const SchemaControls: React.FC<SchemaControlsProps> = ({
         <Button style={{ width: '10%' }}>
           <OrderedListOutlined />
         </Button>
-        <Button style={{ width: '10%' }}>
+        <Button
+          style={{ width: '10%' }}
+          onClick={() => setIsModalVisible(true)}
+        >
           <SettingOutlined />
         </Button>
       </Input.Group>
@@ -72,6 +78,9 @@ const SchemaControls: React.FC<SchemaControlsProps> = ({
           icon={<MinusCircleOutlined color="ff0000" />}
         />
       )}
+      <SchemaMenu
+        {...{ schema, onChange, isModalVisible, setIsModalVisible }}
+      />
     </div>
   )
 }

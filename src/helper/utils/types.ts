@@ -1,12 +1,6 @@
 export type Schema = Record<string, unknown>
 
-export type SchemaType =
-  | 'string'
-  | 'number'
-  | 'integer'
-  | 'object'
-  | 'array'
-  | 'boolean'
+export type SchemaType = 'string' | 'number' | 'object' | 'array' | 'boolean'
 
 export type SchemaTypeOption = { value: SchemaType; label: string }
 
@@ -17,18 +11,8 @@ export type StringSchemaField =
   | 'enum'
   | 'minLength'
   | 'maxLength'
-  | 'pattern'
   | 'format'
-export type NumberSchemaField =
-  | CommonSchemaField
-  | 'minimum'
-  | 'maximum'
-  | 'multipleOf'
-export type IntegerSchemaField =
-  | CommonSchemaField
-  | 'minimum'
-  | 'maximum'
-  | 'multipleOf'
+export type NumberSchemaField = CommonSchemaField | 'minimum' | 'maximum'
 export type BoolSchemaField = CommonSchemaField
 export type ObjectSchemaField = CommonSchemaField | 'required'
 export type ArraySchemaField =
@@ -43,14 +27,10 @@ export type SchemaFieldOptionType =
   | 'boolean'
   | 'multi_creatable'
   | 'select'
-  | 'required'
 
 export type CommonValidSchemaField = CommonSchemaField | 'title' | 'type'
 export type StringValidSchemaField = StringSchemaField | CommonValidSchemaField
 export type NumberValidSchemaField = NumberSchemaField | CommonValidSchemaField
-export type IntegerValidSchemaField =
-  | IntegerSchemaField
-  | CommonValidSchemaField
 export type BoolValidSchemaField = BoolSchemaField | CommonValidSchemaField
 export type ArrayValidSchemaField =
   | ArraySchemaField
@@ -77,9 +57,6 @@ export type StringSchemaFieldOption = SchemaFieldOption & {
 export type NumberSchemaFieldOption = SchemaFieldOption & {
   value: NumberSchemaField
 }
-export type IntegerSchemaFieldOption = SchemaFieldOption & {
-  value: IntegerSchemaField
-}
 export type BoolSchemaFieldOption = SchemaFieldOption & {
   value: BoolSchemaField
 }
@@ -89,3 +66,10 @@ export type ObjectSchemaFieldOption = SchemaFieldOption & {
 export type ArraySchemaFieldOption = SchemaFieldOption & {
   value: ArraySchemaField
 }
+
+export type SchemaMenuOption =
+  | StringSchemaFieldOption
+  | NumberSchemaFieldOption
+  | BoolSchemaFieldOption
+  | ObjectSchemaFieldOption
+  | ArraySchemaFieldOption

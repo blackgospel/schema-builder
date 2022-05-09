@@ -3,7 +3,13 @@ import type { NextPage } from 'next'
 import React from 'react'
 
 const Home: NextPage = () => {
-  return <JsonBuilder />
+  return (
+    <>
+      <div style={{ marginBottom: '32px' }}>
+        <JsonBuilder />
+      </div>
+    </>
+  )
 }
 
 export default Home

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { schemaTypes } from 'src/helper/utils/constants'
 import {
   findOption,
@@ -11,6 +12,8 @@ const useSchemaControls = (
   onChange: (schema: Schema) => void,
   onChangeKey?: (key: string) => void
 ) => {
+  const [isModalVisible, setIsModalVisible] = useState(false)
+
   const getTypeValue = findOption(getSchemaType(schema))(
     schemaTypes
   ) as unknown as string
@@ -22,6 +25,8 @@ const useSchemaControls = (
     onChange(setSchemaTypeAndRemoveWrongFields(option, schema))
 
   return {
+    isModalVisible,
+    setIsModalVisible,
     onChangeTitle,
     onChangeType,
     getTypeValue,
