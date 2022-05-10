@@ -1,22 +1,11 @@
-import { useState } from 'react'
-import { defaultSchema } from 'src/helper/utils/constants'
-import { Schema } from 'src/helper/utils/types'
-import { SchemaCreator } from './components/schema-creator'
-import styles from './json-builder.module.sass'
+import { Box, Title } from './json-builder.styles'
 
-const JsonBuilder: React.FC = () => {
-  const [schema, setSchema] = useState<Schema>(defaultSchema)
-
-  console.log(schema)
-
+const JSONBuilderV3: React.FC = ({ ...props }) => {
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Json Builder</h1>
-      <section>
-        <SchemaCreator schema={schema} onChange={setSchema} />
-      </section>
-    </div>
+    <Box>
+      <Title>JSON Builder V3</Title>
+    </Box>
   )
 }
 
-export default JsonBuilder
+export default JSONBuilderV3
