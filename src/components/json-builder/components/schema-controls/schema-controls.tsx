@@ -61,6 +61,7 @@ const SchemaControls: React.FC<SchemaControlsProps> = ({
           onChange={onChangeType}
           options={schemaTypes}
           style={{ width: _.isFunction(onChangeKey) ? '40%' : '80%' }}
+          disabled={schemaKey === '__root__'}
         />
         <Button style={{ width: '10%' }}>
           <OrderedListOutlined />

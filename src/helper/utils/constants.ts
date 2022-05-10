@@ -18,6 +18,7 @@ import type {
 
 export const defaultSchema = {
   type: 'object',
+  title: 'root',
   properties: {},
 }
 
