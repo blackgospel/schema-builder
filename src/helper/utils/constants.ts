@@ -1,4 +1,4 @@
-import type {
+import {
   ArraySchemaFieldOption,
   ArrayValidSchemaField,
   BoolSchemaFieldOption,
@@ -14,13 +14,9 @@ import type {
   SchemaTypeOption,
   StringSchemaFieldOption,
   StringValidSchemaField,
-} from '../utils/types'
+} from './types'
 
-export const defaultSchema = {
-  type: 'object',
-  title: 'root',
-  properties: {},
-}
+export const ROOT_KEY = '__root__'
 
 export const schemaTypes: SchemaTypeOption[] = [
   {
@@ -45,48 +41,10 @@ export const schemaTypes: SchemaTypeOption[] = [
   },
 ]
 
-const commonValidProperties: CommonValidSchemaField[] = [
-  'description',
-  'type',
-  'title',
-]
-
-export const stringValidSchemaProperties: StringValidSchemaField[] = [
-  ...commonValidProperties,
-  'enum',
-  'format',
-  'maxLength',
-  'minLength',
-]
-
-export const numberValidSchemaProperties: NumberValidSchemaField[] = [
-  ...commonValidProperties,
-  'maximum',
-  'minimum',
-]
-
-export const boolValidSchemaProperties: BoolValidSchemaField[] = [
-  ...commonValidProperties,
-]
-
-export const arrayValidSchemaProperties: ArrayValidSchemaField[] = [
-  ...commonValidProperties,
-  'maxItems',
-  'minItems',
-  'uniqueItems',
-  'items',
-]
-
-export const objectValidSchemaProperties: ObjectValidSchemaField[] = [
-  ...commonValidProperties,
-  // 'required',
-  'properties',
-]
-
 export const formatOptions = [
   {
     value: 'date-time',
-    label: 'Date',
+    label: 'Date/Time',
   },
   {
     value: 'email',
@@ -110,15 +68,54 @@ export const formatOptions = [
   },
 ]
 
+const commonValidProperties: CommonValidSchemaField[] = [
+  'description',
+  'type',
+  'title',
+]
+
+export const stringValidSchemaProperties: StringValidSchemaField[] = [
+  ...commonValidProperties,
+  'enum',
+  'format',
+  'maxLength',
+  'minLength',
+  'pattern',
+]
+
+export const numberValidSchemaProperties: NumberValidSchemaField[] = [
+  ...commonValidProperties,
+  'maximum',
+  'minimum',
+]
+
+export const boolValidSchemaProperties: BoolValidSchemaField[] = [
+  ...commonValidProperties,
+]
+
+export const arrayValidSchemaProperties: ArrayValidSchemaField[] = [
+  ...commonValidProperties,
+  'maxItems',
+  'minItems',
+  'uniqueItems',
+  'items',
+]
+
+export const objectValidSchemaProperties: ObjectValidSchemaField[] = [
+  ...commonValidProperties,
+  'properties',
+]
+
 const commonSchemaOptions: CommonSchemaFieldOption[] = [
   { value: 'description', label: 'Description', type: 'text' },
 ]
 
 export const stringSchemaOptions: StringSchemaFieldOption[] = [
   ...commonSchemaOptions,
-  { value: 'minLength', label: 'Minimum Length', type: 'number' },
-  { value: 'maxLength', label: 'Maximum Length', type: 'number' },
-  { value: 'enum', label: 'Options', type: 'multi_creatable' },
+  { value: 'minLength', label: 'Min Length', type: 'number' },
+  { value: 'maxLength', label: 'Max Length', type: 'number' },
+  { value: 'enum', label: 'Options', type: 'multi' },
+  { value: 'pattern', label: 'Pattern', type: 'text' },
   {
     value: 'format',
     label: 'Format',
@@ -129,8 +126,8 @@ export const stringSchemaOptions: StringSchemaFieldOption[] = [
 
 export const numberSchemaOptions: NumberSchemaFieldOption[] = [
   ...commonSchemaOptions,
-  { value: 'minimum', label: 'Minimum', type: 'number' },
-  { value: 'maximum', label: 'Maximum', type: 'number' },
+  { value: 'minimum', label: 'Min Number', type: 'number' },
+  { value: 'maximum', label: 'Max Number', type: 'number' },
 ]
 
 export const boolSchemaOptions: BoolSchemaFieldOption[] = [
@@ -139,23 +136,14 @@ export const boolSchemaOptions: BoolSchemaFieldOption[] = [
 
 export const objectSchemaOptions: ObjectSchemaFieldOption[] = [
   ...commonSchemaOptions,
-  // { value: 'required', label: 'Required', type: 'required' },
 ]
 
 export const arraySchemaOptions: ArraySchemaFieldOption[] = [
   ...commonSchemaOptions,
-  { value: 'minItems', label: 'Minimum Items', type: 'number' },
-  { value: 'maxItems', label: 'Maximum Items', type: 'number' },
+  { value: 'minItems', label: 'Min Items', type: 'number' },
+  { value: 'maxItems', label: 'Max Items', type: 'number' },
   { value: 'uniqueItems', label: 'Unique Items', type: 'boolean' },
 ]
-
-export const typeToValidFields: Record<SchemaType, string[]> = {
-  string: stringValidSchemaProperties,
-  number: numberValidSchemaProperties,
-  boolean: boolValidSchemaProperties,
-  object: objectValidSchemaProperties,
-  array: arrayValidSchemaProperties,
-}
 
 export const typeToOptions: Record<SchemaType, SchemaMenuOption[]> = {
   string: stringSchemaOptions,
@@ -163,4 +151,12 @@ export const typeToOptions: Record<SchemaType, SchemaMenuOption[]> = {
   boolean: boolSchemaOptions,
   array: arraySchemaOptions,
   object: objectSchemaOptions,
+}
+
+export const typeToValidFields: Record<SchemaType, string[]> = {
+  string: stringValidSchemaProperties,
+  number: numberValidSchemaProperties,
+  boolean: boolValidSchemaProperties,
+  object: objectValidSchemaProperties,
+  array: arrayValidSchemaProperties,
 }

@@ -4,6 +4,10 @@ export type SchemaType = 'string' | 'number' | 'object' | 'array' | 'boolean'
 
 export type SchemaTypeOption = { value: SchemaType; label: string }
 
+export type JSONSchemaEditor = {
+  data?: Schema
+}
+
 export type CommonSchemaField = 'description'
 
 export type StringSchemaField =
@@ -11,10 +15,15 @@ export type StringSchemaField =
   | 'enum'
   | 'minLength'
   | 'maxLength'
+  | 'pattern'
   | 'format'
+
 export type NumberSchemaField = CommonSchemaField | 'minimum' | 'maximum'
+
 export type BoolSchemaField = CommonSchemaField
-export type ObjectSchemaField = CommonSchemaField | 'required'
+
+export type ObjectSchemaField = CommonSchemaField
+
 export type ArraySchemaField =
   | CommonSchemaField
   | 'uniqueItems'
@@ -25,17 +34,22 @@ export type SchemaFieldOptionType =
   | 'text'
   | 'number'
   | 'boolean'
-  | 'multi_creatable'
+  | 'multi'
   | 'select'
 
 export type CommonValidSchemaField = CommonSchemaField | 'title' | 'type'
+
 export type StringValidSchemaField = StringSchemaField | CommonValidSchemaField
+
 export type NumberValidSchemaField = NumberSchemaField | CommonValidSchemaField
+
 export type BoolValidSchemaField = BoolSchemaField | CommonValidSchemaField
+
 export type ArrayValidSchemaField =
   | ArraySchemaField
   | CommonValidSchemaField
   | 'items'
+
 export type ObjectValidSchemaField =
   | ObjectSchemaField
   | CommonValidSchemaField
@@ -54,15 +68,19 @@ export type CommonSchemaFieldOption = SchemaFieldOption & {
 export type StringSchemaFieldOption = SchemaFieldOption & {
   value: StringSchemaField
 }
+
 export type NumberSchemaFieldOption = SchemaFieldOption & {
   value: NumberSchemaField
 }
+
 export type BoolSchemaFieldOption = SchemaFieldOption & {
   value: BoolSchemaField
 }
+
 export type ObjectSchemaFieldOption = SchemaFieldOption & {
   value: ObjectSchemaField
 }
+
 export type ArraySchemaFieldOption = SchemaFieldOption & {
   value: ArraySchemaField
 }
