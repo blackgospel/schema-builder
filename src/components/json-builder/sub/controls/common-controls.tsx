@@ -111,6 +111,7 @@ const CommonControls: React.FC<CommonControlsProps> = ({
               style={{ width: '100%' }}
               onClick={openModal}
               icon={<SettingOutlined />}
+              disabled={!getTypeOptions}
             />
           </Col>
           {isObject && (

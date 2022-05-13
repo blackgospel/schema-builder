@@ -109,6 +109,7 @@ const ArrayControls: React.FC<ArrayControlsProps> = ({
               style={{ width: '100%' }}
               onClick={openModal}
               icon={<SettingOutlined />}
+              disabled={!getTypeOptions}
             />
           </Col>
           {isSchemaObject(schema) && (
