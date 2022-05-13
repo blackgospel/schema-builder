@@ -69,8 +69,6 @@ const ArrayControls: React.FC<ArrayControlsProps> = ({
     onChangeFieldType,
   } = useControls({ schema, onChange, onChangeKey })
 
-  console.log({ schema, schemaKey, controlType })
-
   return (
     <>
       <Input.Group>
