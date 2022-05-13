@@ -90,6 +90,7 @@ const CommonControls: React.FC<CommonControlsProps> = ({
               <Col span={22}>
                 <Input
                   defaultValue={schemaKey}
+                  /* TODO: figure out way to disable array items without explictly using items as disable control */
                   disabled={rootNode || schemaKey === 'items'}
                   onBlur={onChangeFieldName}
                 />
