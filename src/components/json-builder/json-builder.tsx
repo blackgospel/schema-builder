@@ -35,6 +35,8 @@ const JSONBuilder: React.FC<JSONSchemaEditor> = ({ data }) => {
   const initial = data || defaultSchema()
   const [schema, setSchema] = useState<Schema>(initial)
 
+  const isBrowser = typeof window !== 'undefined'
+
   const props: UploadProps = {
     beforeUpload: (file: { type: string; name: any }) => {
       const isJSON = file.type === 'application/json'
@@ -64,7 +66,7 @@ const JSONBuilder: React.FC<JSONSchemaEditor> = ({ data }) => {
       </UploadButton>
       <JSONContainer>
         <SchemaCreator schema={schema} onChange={setSchema} />
-        {process.browser && <JSONPretty data={schema} />}
+        {isBrowser && <JSONPretty data={schema} />}
       </JSONContainer>
     </Box>
   )
