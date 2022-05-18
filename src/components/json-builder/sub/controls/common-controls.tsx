@@ -2,10 +2,10 @@ import {
   CaretDownFilled,
   CaretRightFilled,
   DeleteOutlined,
-  PlusOutlined,
+  PlusCircleOutlined,
   SettingOutlined,
 } from '@ant-design/icons'
-import { Button, Col, Input, Row, Select } from 'antd'
+import { Button, Col, Input, Row, Select, SelectProps } from 'antd'
 import _ from 'lodash'
 import { schemaTypes } from 'src/helper/utils/constants'
 import {
@@ -71,11 +71,13 @@ const CommonControls: React.FC<CommonControlsProps> = ({
   const isObject = controlType === 'object'
   const isArray = controlType === 'array'
 
+  const StyledSelect = styled((props: SelectProps) => <Select {...props} />)``
+
   return (
     <>
       <Input.Group>
         <Row align="middle">
-          <Col span={11}>
+          <Col xs={isObject ? 9 : 10} lg={11}>
             <Row justify="space-around" align="middle">
               <Col span={2}>
                 {isCollection && (
@@ -89,6 +91,7 @@ const CommonControls: React.FC<CommonControlsProps> = ({
               </Col>
               <Col span={22}>
                 <Input
+                  style={{ borderRadius: '0px', borderRight: '0px' }}
                   defaultValue={schemaKey}
                   /* TODO: figure out way to disable array items without explictly using items as disable control */
                   disabled={rootNode || schemaKey === 'items'}
@@ -97,38 +100,41 @@ const CommonControls: React.FC<CommonControlsProps> = ({
               </Col>
             </Row>
           </Col>
-          <Col span={isObject ? 10 : 11}>
-            <Select
-              style={{ width: '100%' }}
+          <Col xs={isObject ? 9 : 10} lg={isObject ? 10 : 11}>
+            <StyledSelect
+              style={{ width: '100%', borderRadius: '0px' }}
               value={getTypeOptions}
               options={schemaTypes}
               disabled={rootNode}
               onChange={onChangeFieldType}
             />
           </Col>
-          <Col span={1}>
+          <Col xs={2} lg={1}>
             <Button
+              type="text"
               style={{ width: '100%' }}
               onClick={openModal}
-              icon={<SettingOutlined />}
+              icon={<SettingOutlined style={{ color: '#3182ce' }} />}
               disabled={!getTypeOptions}
             />
           </Col>
           {isObject && (
-            <Col span={1}>
+            <Col xs={2} lg={1}>
               <Button
+                type="text"
                 disabled={!_.isFunction(onAdd)}
                 onClick={onAdd}
                 style={{ width: '100%' }}
-                icon={<PlusOutlined />}
+                icon={<PlusCircleOutlined style={{ color: '#38a169' }} />}
               />
             </Col>
           )}
-          <Col span={1}>
+          <Col xs={2} lg={1}>
             <Button
+              type="text"
               style={{ width: '100%' }}
               onClick={onDelete}
-              icon={<DeleteOutlined />}
+              icon={<DeleteOutlined style={{ color: '#e53e3e' }} />}
               disabled={rootNode}
             />
           </Col>
