@@ -27,7 +27,7 @@ const UploadButton = styled(Upload)`
 const JSONContainer = styled.div`
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 7fr 4fr;
+  grid-template-columns: 4fr 2fr;
   gap: 16px;
 `
 
@@ -62,7 +62,7 @@ const JSONBuilder: React.FC<JSONSchemaEditor> = ({ data }) => {
       <UploadButton {...props}>
         <Button icon={<UploadOutlined />}>Import JSON</Button>
       </UploadButton>
-      <JSONContainer suppressHydrationWarning={true}>
+      <JSONContainer>
         <SchemaCreator schema={schema} onChange={setSchema} />
         {process.browser && <JSONPretty data={schema} />}
       </JSONContainer>
