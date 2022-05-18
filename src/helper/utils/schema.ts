@@ -40,7 +40,7 @@ export const deleteSchemaProperty = (key: string) =>
   deleteSchemaField(['properties', key])
 
 export const addSchemaProperty = (schema: Schema) =>
-  setSchemaProperty(`__${_.now()}__`)({}, schema)
+  setSchemaProperty(`${_.uniqueId('field_')}`)({}, schema)
 
 export const renameSchemaField = (oldKey: string, newKey: string) =>
   _.flow([
