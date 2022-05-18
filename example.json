@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "root",
+  "properties": {
+    "__1652889462289__": {
+      "type": "number"
+    },
+    "__1652889590701__": {
+      "type": "object",
+      "properties": {
+        "__1652889601331__": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

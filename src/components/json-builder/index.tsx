@@ -1,1 +1,1 @@
-export { default as JsonBuilder } from './json-builder'
+export { default as JSONBuilder } from './json-builder'

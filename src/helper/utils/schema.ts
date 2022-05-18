@@ -90,3 +90,5 @@ export const setSchemaTypeAndRemoveWrongFields = _.flow([
   setSchemaType,
   removeWrongFields,
 ])
+
+export const stringsToOptions = _.map(s => ({ label: s, value: s }))

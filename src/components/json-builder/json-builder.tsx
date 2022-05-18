@@ -1,22 +1,75 @@
+import { UploadOutlined } from '@ant-design/icons'
+import { Button, message, Upload, UploadProps } from 'antd'
 import { useState } from 'react'
-import { defaultSchema } from 'src/helper/utils/constants'
-import { Schema } from 'src/helper/utils/types'
-import { SchemaCreator } from './components/schema-creator'
-import styles from './json-builder.module.sass'
+import JSONPretty from 'react-json-pretty'
+import 'react-json-pretty/themes/monikai.css'
+import { defaultSchema } from 'src/helper/utils/funcs'
+import { JSONSchemaEditor, Schema } from 'src/helper/utils/types'
+import styled from 'styled-components'
+import SchemaCreator from './sub/schema-creator'
 
-const JsonBuilder: React.FC = () => {
-  const [schema, setSchema] = useState<Schema>(defaultSchema)
+const Box = styled.div`
+  padding: 16px;
+`
 
-  console.log(schema)
+const Title = styled.h1`
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 16px;
+`
+
+const UploadButton = styled(Upload)`
+  button {
+    margin-bottom: 16px;
+  }
+`
+
+const JSONContainer = styled.div`
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 4fr 2fr;
+  gap: 16px;
+`
+
+const JSONBuilder: React.FC<JSONSchemaEditor> = ({ data }) => {
+  const initial = data || defaultSchema()
+  const [schema, setSchema] = useState<Schema>(initial)
+
+  const isBrowser = typeof window !== 'undefined'
+
+  const props: UploadProps = {
+    beforeUpload: (file: { type: string; name: any }) => {
+      const isJSON = file.type === 'application/json'
+      if (!isJSON) {
+        message.error(`${file.name} is not a JSON file`)
+      }
+      return false
+    },
+    onChange: ({ fileList }) => {
+      const reader = new FileReader()
+      const jsonSchema = fileList[0].originFileObj
+      reader.onload = (e: any) => {
+        var content = e.target.result
+        setSchema(JSON.parse(content))
+      }
+      reader.readAsText(jsonSchema as Blob)
+    },
+    maxCount: 1,
+    showUploadList: false,
+  }
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Json Builder</h1>
-      <section>
+    <Box>
+      <Title>JSON Builder V3</Title>
+      <UploadButton {...props}>
+        <Button icon={<UploadOutlined />}>Import JSON</Button>
+      </UploadButton>
+      <JSONContainer>
         <SchemaCreator schema={schema} onChange={setSchema} />
-      </section>
-    </div>
+        {isBrowser && <JSONPretty data={schema} />}
+      </JSONContainer>
+    </Box>
   )
 }
 
-export default JsonBuilder
+export default JSONBuilder
