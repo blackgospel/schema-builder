@@ -8,6 +8,8 @@ export type JSONSchemaEditor = {
   data?: Schema
 }
 
+export type JSONSchemaVisual = JSONSchemaEditor
+
 export type CommonSchemaField = 'description'
 
 export type StringSchemaField =

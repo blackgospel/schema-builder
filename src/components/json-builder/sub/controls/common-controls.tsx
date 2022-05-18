@@ -71,13 +71,17 @@ const CommonControls: React.FC<CommonControlsProps> = ({
   const isObject = controlType === 'object'
   const isArray = controlType === 'array'
 
-  const StyledSelect = styled((props: SelectProps) => <Select {...props} />)``
+  const StyledSelect = styled((props: SelectProps) => <Select {...props} />)`
+    .my-select-container .ant-select .ant-select-selector {
+      border-radius: 0;
+    }
+  `
 
   return (
-    <>
+    <div>
       <Input.Group>
         <Row align="middle">
-          <Col xs={isObject ? 9 : 10} lg={11}>
+          <Col xs={isObject ? 9 : 10} xl={11}>
             <Row justify="space-around" align="middle">
               <Col span={2}>
                 {isCollection && (
@@ -100,7 +104,7 @@ const CommonControls: React.FC<CommonControlsProps> = ({
               </Col>
             </Row>
           </Col>
-          <Col xs={isObject ? 9 : 10} lg={isObject ? 10 : 11}>
+          <Col xs={isObject ? 9 : 10} xl={isObject ? 10 : 11}>
             <StyledSelect
               style={{ width: '100%', borderRadius: '0px' }}
               value={getTypeOptions}
@@ -109,7 +113,7 @@ const CommonControls: React.FC<CommonControlsProps> = ({
               onChange={onChangeFieldType}
             />
           </Col>
-          <Col xs={2} lg={1}>
+          <Col xs={2} xl={1}>
             <Button
               type="text"
               style={{ width: '100%' }}
@@ -119,7 +123,7 @@ const CommonControls: React.FC<CommonControlsProps> = ({
             />
           </Col>
           {isObject && (
-            <Col xs={2} lg={1}>
+            <Col xs={2} xl={1}>
               <Button
                 type="text"
                 disabled={!_.isFunction(onAdd)}
@@ -129,7 +133,7 @@ const CommonControls: React.FC<CommonControlsProps> = ({
               />
             </Col>
           )}
-          <Col xs={2} lg={1}>
+          <Col xs={2} xl={1}>
             <Button
               type="text"
               style={{ width: '100%' }}
@@ -167,7 +171,7 @@ const CommonControls: React.FC<CommonControlsProps> = ({
           )}
         </Box>
       )}
-    </>
+    </div>
   )
 }
 
