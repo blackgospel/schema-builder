@@ -6,7 +6,6 @@ import {
   getSchemaMenuOptions,
   getSchemaType,
   setSchemaField,
-  stringsToOptions,
 } from 'src/helper/utils/schema'
 import { Schema, SchemaFieldOptionType } from 'src/helper/utils/types'
 
@@ -67,9 +66,6 @@ const SchemaOptions = ({
       />
     ),
     multi: props => {
-      const multiSelected = getSchemaField(props.option.value, props.schema)
-      const multiSelectOptions = stringsToOptions(multiSelected)
-
       return (
         <Select
           mode="tags"
