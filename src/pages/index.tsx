@@ -1,9 +1,9 @@
-import JsonBuilder from 'components/json-builder/json-builder'
+import { JSONSchemaBuilder } from '@omnixenon/react-antd-json-schema-builder'
 import type { NextPage } from 'next'
 import React from 'react'
 
 const Home: NextPage = () => {
-  return <JsonBuilder />
+  return <JSONSchemaBuilder />
 }
 
 export default Home

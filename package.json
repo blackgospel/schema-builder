@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
+    "@omnixenon/react-antd-json-schema-builder": "0.0.2",
     "ajv": "^8.11.0",
     "antd": "^4.20.1",
     "babel-plugin-styled-components": "^2.0.7",
